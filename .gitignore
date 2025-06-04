@@ -7,3 +7,4 @@
 # Optional: ignore logs and system files
 **/npm-debug.log
 .DS_Store
+.vercel
