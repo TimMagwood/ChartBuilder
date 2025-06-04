@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart Builder</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h2>Select a Chart Type</h2>
+    <div class="theme-toggle">
+        <label class="switch">
+            <input type="checkbox" id="dark-mode-toggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+    <div class="chart-selection">
+        <img src="assets/chart-thumbnails/line.png" height="200" width="300" alt="Line Chart" data-type="line" />
+        <img src="assets/chart-thumbnails/bar.png" height="200" width="300" alt="Bar Chart" data-type="bar" />
+        <img src="assets/chart-thumbnails/heatmap.png" height="200" width="300" alt="Heatmap Chart" data-type="heatmap" />
+    </div>
+
+    <script src="js/state.js"></script>
+    <script>
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('click', () => {
+            const chartType = img.getAttribute('data-type');
+            localStorage.setItem('chartType', chartType);
+            window.location.href = 'chart.html';
+            });
+        });
+    </script>
+
+    <script>
+        const toggle = document.getElementById('dark-mode-toggle');
+
+        function applyTheme(theme) {
+            document.body.setAttribute('data-theme', theme);
+            toggle.checked = theme === 'dark';
+        }
+
+        function toggleTheme(e) {
+            const newTheme = e.target.checked ? 'dark' : 'light';
+            localStorage.setItem('theme', newTheme);
+            applyTheme(newTheme);
+        }
+
+        toggle.addEventListener('change', toggleTheme);
+
+        // On load
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        applyTheme(savedTheme);
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,201 @@
+/* === Base Theme (Light by default) === */
+:root {
+  --bg-color: #f8f9fa;
+  --text-color: #333;
+  --card-bg: #fff;
+  --border-color: #ccc;
+  --highlight-bg: #e9ecef;
+  --btn-bg: #007bff;
+  --btn-hover-bg: #0056b3;
+  --shadow-color: rgba(0, 0, 0, 0.08);
+}
+
+body[data-theme="dark"] {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --card-bg: #1f1f1f;
+  --border-color: #333;
+  --highlight-bg: #2a2a2a;
+  --btn-bg: #0d6efd;
+  --btn-hover-bg: #0b5ed7;
+  --shadow-color: rgba(255, 255, 255, 0.05);
+}
+
+body {
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  padding: 2rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Headings */
+h1, h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Layout */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Chart Selection Grid */
+.chart-selection {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+
+.chart-selection img {
+  width: 100%;
+  max-width: 240px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px var(--shadow-color);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.chart-selection img:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px var(--shadow-color);
+}
+
+/* Stock Selection */
+#stock-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1rem 0;
+  justify-content: center;
+}
+
+#stock-options label {
+  background: var(--card-bg);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px var(--shadow-color);
+  cursor: pointer;
+  transition: background 0.2s;
+  color: var(--text-color);
+}
+
+#stock-options input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+#stock-options label:hover {
+  background: var(--highlight-bg);
+}
+
+/* Inputs and Buttons */
+input[type="text"] {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto 1rem;
+  padding: 0.6rem;
+  background: var(--card-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+
+button {
+  display: block;
+  background: var(--btn-bg);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 1rem auto;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: var(--btn-hover-bg);
+}
+
+/* Chart Container */
+#chart {
+  margin-top: 2rem;
+  background: var(--card-bg);
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px var(--shadow-color);
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+}
+
+/* Switch Container */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+}
+
+/* Hide checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Slider Track */
+.slider {
+  position: absolute;
+  top: 0; left: 0;
+  right: 0; bottom: 0;
+  background-color: #ccc;
+  border-radius: 34px;
+  cursor: pointer;
+  transition: background-color 0.4s;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6px;
+  font-size: 16px;
+}
+
+/* Icons */
+.icon {
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+/* Move the slider ball (optional for aesthetics) */
+.slider::before {
+  content: "";
+  position: absolute;
+  height: 22px;
+  width: 22px;
+  left: 4px;
+  top: 4px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.4s;
+  z-index: 0;
+}
+
+/* When checked - dark mode */
+input:checked + .slider {
+  background-color: #2a2a2a;
+}
+
+input:checked + .slider::before {
+  transform: translateX(30px);
+}

@@ -1,0 +1,9 @@
+# Ignore node modules anywhere
+**/node_modules/
+
+# Ignore environment files
+**/.env
+
+# Optional: ignore logs and system files
+**/npm-debug.log
+.DS_Store

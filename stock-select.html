@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart Builder</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <h2>Select Stocks</h2>
+  <div class="theme-toggle">
+    <label class="switch">
+        <input type="checkbox" id="dark-mode-toggle">
+        <span class="slider"></span>
+    </label>
+  </div>
+  <input type="text" id="stock-search" placeholder="Search stocks..." />
+  <div id="stock-options">
+    <!-- Populate with checkboxes or search results -->
+  </div>
+  <button id="render">Render Chart</button>
+
+  <script src="js/state.js"></script>
+  <script>
+    const availableStocks = ['AAPL', 'GOOG', 'MSFT', 'AMZN'];
+
+    const stockOptionsDiv = document.getElementById('stock-options');
+    availableStocks.forEach(stock => {
+      const label = document.createElement('label');
+      label.innerHTML = `<input type="checkbox" value="${stock}"/> ${stock}`;
+      stockOptionsDiv.appendChild(label);
+    });
+
+    document.getElementById('render').addEventListener('click', () => {
+      const selected = Array.from(document.querySelectorAll('input[type=checkbox]:checked')).map(cb => cb.value);
+      localStorage.setItem('selectedStocks', JSON.stringify(selected));
+      window.location.href = 'chart.html';
+    });
+
+  </script>
+
+  <script src="theme-toggle.js"></script>
+</body>
